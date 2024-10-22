@@ -28,13 +28,48 @@
         </dependency>
         <dependency>
             <groupId>com.oracle.servicebus.core</groupId>
+            <artifactId>module-configfwk</artifactId>
+            <version>12.1.3-0-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.osb.server</groupId>
+            <artifactId>oracle.servicebus.kernel-wls</artifactId>
+            <version>12.2.1-3-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.servicebus.core</groupId>
             <artifactId>module-kernel-api</artifactId>
             <version>12.1.3-0-0</version>
         </dependency>
         <dependency>
-            <groupId>com.oracle.servicebus.core</groupId>
-            <artifactId>module-configfwk</artifactId>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>com.bea.core.management.jmx</artifactId>
+            <version>12.2.1-3-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wlfullclient</artifactId>
+            <version>12.1.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.soa</groupId>
+            <artifactId>fabric-runtime</artifactId>
             <version>12.1.3-0-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.soa</groupId>
+            <artifactId>soa-infra-mgmt</artifactId>
+            <version>12.1.3-0-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.fmwshare</groupId>
+            <artifactId>com.oracle.webservices.fabric-common-api</artifactId>
+            <version>12.2.1-3-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.fmwshare</groupId>
+            <artifactId>jrf-api</artifactId>
+            <version>12.2.1-3-0</version>
         </dependency>
     </dependencies>
     <build>
@@ -76,7 +111,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>osbProjectExporter.Main</mainClass>
+                            <mainClass>osbProjectExporter.OsbProjectExporter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -92,7 +127,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>osbProjectExporter.Main</mainClass>
+                            <mainClass>osbProjectExporter.OsbProjectExporter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
