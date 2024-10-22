@@ -44,6 +44,8 @@ public class Main {
             System.out.println("[INFO] The project " + parsedArgs.get("projectName") + " has been exported to " + fullPath);
         } catch (IOException e) {
             System.out.println("[ERROR] Failed exporting the project " + parsedArgs.get("projectName") + ". " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 Globals.connector.close();
