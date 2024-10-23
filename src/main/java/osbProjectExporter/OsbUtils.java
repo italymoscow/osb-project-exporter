@@ -64,6 +64,7 @@ public class OsbUtils {
     public static byte[] getJarBinary(Map<String, String> args) throws Exception {
 
         // Connect to the server
+        System.out.println("Connecting to the server");
         initConnection(args.get("url"),
                 args.get("userName"),
                 args.get("password"),
@@ -73,6 +74,7 @@ public class OsbUtils {
         Set<Ref> resourceRefs = getResourceRefs(args.get("projectName"));
 
         // Get the project jar
+        System.out.println("Exporting the jar for project " + args.get("projectName"));
         byte[] jarBinary;
         boolean includeDependencies = true;
         EncryptionScope encryptionScope = EncryptionScope.NoEncryption;
@@ -104,7 +106,8 @@ public class OsbUtils {
         try {
             projectRefs = alsbCore.getRefs(new Ref("Project", Ref.DOMAIN, projectName));
         } catch (Exception e) {
-            throw new Exception("");
+            throw new RuntimeException("[ERROR] Failed getting the project references for project " +
+                    projectName + ". " + e.getMessage());
         }
 
         return projectRefs;

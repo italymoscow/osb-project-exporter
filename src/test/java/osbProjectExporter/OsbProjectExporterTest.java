@@ -34,7 +34,7 @@ public class OsbProjectExporterTest {
     public void testParseArgsWrongNumberOfParameters() {
         exit.expectSystemExitWithStatus(1);
         String[] args = new String[]{"localhost:7001"};
-        Map<String, String> parsedArgs = OsbProjectExporter.parseArgs(args);
+        OsbProjectExporter.parseArgs(args);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class OsbProjectExporterTest {
                 "password",
                 "project",
                 "C:\\Users"};
-        Map<String, String> parsedArgs = OsbProjectExporter.parseArgs(args);
+        OsbProjectExporter.parseArgs(args);
     }
 
     @Test
@@ -56,11 +56,11 @@ public class OsbProjectExporterTest {
                 "password",
                 "project",
                 "C:\\Users"};
-        Map<String, String> parsedArgs = OsbProjectExporter.parseArgs(args);
+        OsbProjectExporter.parseArgs(args);
     }
 
     @Test
-    public void testExportProjectJarFromServer() throws Exception {
+    public void testExportProjectJarFromServerLocal() throws Exception {
         String[] args = new String[]{"t3://localhost:7101",
                 "weblogic",
                 "welcome1",

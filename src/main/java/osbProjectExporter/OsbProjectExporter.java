@@ -34,7 +34,7 @@ public class OsbProjectExporter {
         try {
             exportProjectJarFromServer(parsedArgs);
         } catch (Exception e) {
-            System.out.println("[ERROR] Failed to export OSB project sources. " + e);
+            System.out.println("[ERROR] Failed to export OSB project sources for " + parsedArgs.get("projectName") + e);
         }
     }
 
@@ -55,33 +55,36 @@ public class OsbProjectExporter {
         Map<String, String> parsedArgs = new HashMap<>();
 
         // URL
-        if (args[0].isEmpty()) {
+        String url = args[0].trim();
+        if (url.isEmpty()) {
             System.out.println("[ERROR] The given URL cannot be empty. E.g. t3://localhost:7001");
             System.exit(1);
         }
-        if (!args[0].startsWith("t3://")) {
+        if (!url.startsWith("t3://")) {
             System.out.println("[ERROR] The given URL must start with 't3://'. E.g. t3://localhost:7001");
             System.exit(1);
         }
-        if (!args[0].substring(6).contains(":")) {
+        if (!url.substring(6).contains(":")) {
             System.out.println("[ERROR] The given URL must contain a port number. E.g. t3://localhost:7001");
             System.exit(1);
         }
-        parsedArgs.put("url", args[0].trim());
+        parsedArgs.put("url", url);
 
         // Username
-        if (args[1].isEmpty()) {
+        String userName = args[1].trim();
+        if (userName.isEmpty()) {
             System.out.println("[ERROR] The given username cannot be empty.");
             System.exit(1);
         }
-        parsedArgs.put("userName", args[1].trim());
+        parsedArgs.put("userName", userName);
 
         // Password
-        if (args[2].isEmpty()) {
+        String password = args[2].trim();
+        if (password.isEmpty()) {
             System.out.println("[ERROR] The given password cannot be empty.");
             System.exit(1);
         }
-        parsedArgs.put("password", args[2].trim());
+        parsedArgs.put("password", password);
 
         // Project name
         String projectName = args[3].trim();
@@ -93,12 +96,7 @@ public class OsbProjectExporter {
 
         // Path
         if (args.length == 5) {
-            // Check if the path exists
             String path = args[4].trim();
-            if (!new File(path).exists()) {
-                System.out.println("The given path does not exist: " + path);
-                System.exit(1);
-            }
             parsedArgs.put("exportDir", path);
         } else {
             // Create default path in the current directory
@@ -123,14 +121,17 @@ public class OsbProjectExporter {
         // Get the byte array of the exported jar
         byte[] jarBinary = OsbUtils.getJarBinary(args);
 
-//        FileUtil.writeToFile(args, jarBinary);
+        // Write the unpacked jar to the file system
+        String tmpDir = args.get("exportDir") + File.separator + "tmp";
+        FileUtil.unpackJar(jarBinary, tmpDir);
 
-        FileUtil.unpackJarBinary(jarBinary, args.get("exportDir"));
+        // Copy the folder
+//        FileUtil.copyFolder(args.get("exportDir"), args.get("exportDir") + "_parsed");
 
-        FileUtil.copyFolder(args.get("exportDir"), args.get("exportDir") + "_parsed");
+        // Parse the files
+        FileUtil.processFilesInFolder(tmpDir);
 
-        FileUtil.parseFiles(args.get("exportDir") + "_parsed");
+        // Move the parsed files to the export directory
+        FileUtil.moveFolderContents(tmpDir, args.get("exportDir"));
     }
-
-
 }

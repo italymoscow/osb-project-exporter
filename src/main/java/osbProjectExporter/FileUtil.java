@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+import java.util.stream.Stream;
 
 
 public class FileUtil {
@@ -26,7 +27,7 @@ public class FileUtil {
 
     static {
         Map<String, String> extensions = new HashMap<>();
-        extensions.put("BusinessService", "biz");
+        extensions.put("BusinessService", "bix");
         extensions.put("ProxyService", "proxy");
         extensions.put("Pipeline", "pipeline");
         extensions.put("XML", "xml");
@@ -38,6 +39,7 @@ public class FileUtil {
         extensions.put("WSDL", "wsdl");
         extensions.put("ServiceAccount", "sa");
         extensions.put("Archive", "jar");
+        extensions.put("JCA", "jca");
         validExtensions = Collections.unmodifiableMap(extensions);
     }
 
@@ -55,23 +57,47 @@ public class FileUtil {
 
 
     /**
-     * Copy the folder from source to target
+     * Move the folder from source to target
      *
      * @param source String The source folder
      * @param target String The target folder
      */
-    public static void copyFolder(String source, String target) throws IOException {
+    public static void moveFolderContents(String source, String target) throws IOException {
+        System.out.println("Moving " + source + " to " + target);
         Path sourcePath = new File(source).toPath();
         Path targetPath = new File(target).toPath();
-        Files.walk(sourcePath)
-                .forEach(sp -> {
-                    Path tp = targetPath.resolve(sourcePath.relativize(sp));
-                    try {
-                        Files.copy(sp, tp, StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
-                        throw new RuntimeException("Failed to copy " + source + " to " + target, e);
-                    }
-                });
+
+        try (Stream<Path> paths = Files.walk(sourcePath)) {
+            paths.skip(1) // Skip the root directory itself
+                    .forEach(sp -> {
+                        Path tp = targetPath.resolve(sourcePath.relativize(sp));
+                        try {
+                            if (Files.exists(sp)) {
+                                if (Files.isDirectory(sp)) {
+                                    Files.createDirectories(tp);
+                                } else {
+                                    Files.move(sp, tp, StandardCopyOption.REPLACE_EXISTING);
+                                }
+                            } else {
+                                System.out.println("Skipping non-existent file: " + sp);
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to move " + sp + " to " + tp, e);
+                        }
+                    });
+        }
+
+        // Recursively delete the source directory
+        try (Stream<Path> paths = Files.walk(sourcePath)) {
+            paths.sorted(Comparator.reverseOrder())
+                    .forEach(path -> {
+                        try {
+                            Files.deleteIfExists(path);
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to delete " + path, e);
+                        }
+                    });
+        }
     }
 
 
@@ -144,7 +170,7 @@ public class FileUtil {
      * @param args  Map<String, String> The arguments
      * @param input byte[] The byte array to write
      */
-    private static void writeToFile(Map<String, String> args, byte[] input) throws IOException {
+    private static void writeBytesToFile(Map<String, String> args, byte[] input) throws IOException {
 
         String fullPath = args.get("exportDir") + File.separator + args.get("projectName") + ".jar";
         // Write the jar to the file system
@@ -159,14 +185,15 @@ public class FileUtil {
     /**
      * Unpack the given jar binary to the given directory
      *
-     * @param jarBinary byte[] The jar binary
-     * @param exportDir String The directory to export to
+     * @param jarBytes byte[] The jar binary
+     * @param destDir  String The directory to export to
      */
-    public static void unpackJarBinary(byte[] jarBinary, String exportDir) throws IOException {
-        try (JarInputStream jarInputStream = new JarInputStream(new ByteArrayInputStream(jarBinary))) {
+    public static void unpackJar(byte[] jarBytes, String destDir) throws IOException {
+        System.out.println("Unpacking the jar to " + destDir);
+        try (JarInputStream jarInputStream = new JarInputStream(new ByteArrayInputStream(jarBytes))) {
             JarEntry entry;
             while ((entry = jarInputStream.getNextJarEntry()) != null) {
-                File file = new File(exportDir, entry.getName());
+                File file = new File(destDir, entry.getName());
                 if (entry.isDirectory()) {
                     if (!file.exists() && !file.mkdirs()) {
                         throw new IOException("Failed to create directory " + file);
@@ -190,8 +217,14 @@ public class FileUtil {
     }
 
 
-    public static void parseFiles(String folder) throws ParserConfigurationException, IOException, SAXException {
-
+    /**
+     * Process the files in the given folder. The method will delete unnecessary files, rename the files with valid extensions,
+     * and parse the files with CDATA content.
+     *
+     * @param folder String The folder to parse
+     */
+    public static void processFilesInFolder(String folder) {
+        System.out.println("Parsing the files in " + folder);
         // Get the list of files in the directory recursively
         List<File> listOfFiles = listFilesRecursively(folder);
 
@@ -212,8 +245,7 @@ public class FileUtil {
                     file = changeFileExtension(file, validExtensions.get(fileExtension));
 
                     // Parse the file
-                    file = parseFile(file);
-
+                    parseFile(file);
                 } else {
                     System.out.println("Extension " + fileExtension + " is not supported. Skipping " + file.getPath());
                 }
@@ -222,16 +254,19 @@ public class FileUtil {
     }
 
 
-    public static File parseFile(File file) {
-
+    /**
+     * The method tries to parse the file as an XML.
+     * If the content of the first child is CDATA, write the content of the CDATA to the file
+     *
+     * @param file File The file to parse
+     */
+    public static void parseFile(File file) {
         // Parse the file as XML
         Document doc;
         try {
             doc = getXmlDocFromFile(file);
         } catch (ParserConfigurationException | IOException | SAXException e) {
-            System.out.println("Failed to parse the file as XML: " + file.getPath());
-
-            return file;
+            return;
         }
 
         // Check if the contents of the first child is CDATA
@@ -247,8 +282,6 @@ public class FileUtil {
                 System.out.println("Failed to write the content of the CDATA to the file: " + file.getPath());
             }
         }
-
-        return file;
     }
 
 

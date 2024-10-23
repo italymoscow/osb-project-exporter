@@ -1,9 +1,7 @@
 package osbProjectExporter;
 
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -13,20 +11,6 @@ import static org.junit.Assert.assertTrue;
 
 
 public class FileUtilTest {
-
-    @Test
-    public void testCopyFolder() throws IOException {
-        String source = "src/test/resources/OSBExport_F000T00_Felles_20241023094828014";
-        String target = "src/test/resources/OSBExport_F000T00_Felles_20241023094828014_parsed";
-        FileUtil.copyFolder(source, target);
-
-        // Assert the new folder exists
-        assertTrue(FileUtil.folderExists(target));
-    }
-
-    @Test
-    public void testParseFiles() {
-    }
 
     @Test
     public void testGetFileExtension() {
@@ -61,9 +45,8 @@ public class FileUtilTest {
     }
 
     @Test
-    public void testParseFile() throws ParserConfigurationException, IOException, SAXException {
+    public void testParseFile() {
         File file = new File("src/test/resources/OSBExport_F000T00_Felles_20241023094828014/F000T00_Felles/Mapping/common.XSLT");
-        File fileNew = FileUtil.parseFile(file);
-        assertTrue(fileNew != null);
+        FileUtil.parseFile(file);
     }
 }
