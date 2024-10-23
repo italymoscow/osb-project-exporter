@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:xmlEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+    <con:xml-content><![CDATA[<scm-information>
+	<scm>
+		<developerConnection>scm:git:https://bitbucket.ngdata.no/scm/in/int-fusionmiddleware.git/sb122/F000T00_Felles</developerConnection>
+		<connection>scm:git:https://bitbucket.ngdata.no/scm/in/int-fusionmiddleware.git/sb122/F000T00_Felles</connection>
+	</scm>
+</scm-information>]]></con:xml-content>
+</con:xmlEntry>

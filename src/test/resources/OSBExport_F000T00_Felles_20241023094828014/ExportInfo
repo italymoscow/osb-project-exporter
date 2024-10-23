@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment name="" version="v2" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+        <imp:property name="username" value="weblogic"/>
+        <imp:property name="description" value=""/>
+        <imp:property name="exporttime" value="Wed Oct 23 09:48:29 CEST 2024"/>
+        <imp:property name="productname" value="Oracle Service Bus"/>
+        <imp:property name="productversion" value="12.2.1.3.0"/>
+        <imp:property name="projectLevelExport" value="false"/>
+    </imp:properties>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/XSD/_folderdata" typeId="LocationData">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/XSD/_folderdata.LocationData"/>
+            <imp:property name="custom _special_data_class" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Mapping/_folderdata" typeId="LocationData">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Mapping/_folderdata.LocationData"/>
+            <imp:property name="custom _special_data_class" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Business/_folderdata" typeId="LocationData">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Business/_folderdata.LocationData"/>
+            <imp:property name="custom _special_data_class" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Java/SOA_NG_Utils" typeId="Archive">
+        <imp:properties>
+            <imp:property name="representationversion" value="210"/>
+            <imp:property name="dataclass" value="com.bea.wli.sb.resources.archive.ArchiveData"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Java/SOA_NG_Utils.Archive"/>
+            <imp:property name="custom ar_valrep_type" value="jar"/>
+            <imp:property name="custom ar_valrep_desc" value=""/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/scm-information" typeId="XML">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XmlEntryDocumentImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/scm-information.XML"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Mapping/MFLToVismaB" typeId="MFL">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.MflEntryDocumentImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Mapping/MFLToVismaB.MFL"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/TestServiceAccount" typeId="ServiceAccount">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.sb.svcacct.StaticServiceAccountConfig"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/TestServiceAccount.ServiceAccount"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Business/F000T00_Skriv_tRampe" typeId="BusinessService">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.oracle.xmlns.servicebus.business.config.impl.BusinessServiceEntryDocumentImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Business/F000T00_Skriv_tRampe.BusinessService"/>
+            <imp:property name="extrefs" value="ServiceAccount$F000T00_Felles$TestServiceAccount"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Mapping/common" typeId="XSLT">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XsltEntryDocumentImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Mapping/common.XSLT"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+    <imp:exportedItemInfo instanceId="F000T00_Felles/Java/_folderdata" typeId="LocationData">
+        <imp:properties>
+            <imp:property name="representationversion" value="0"/>
+            <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+            <imp:property name="isencrypted" value="false"/>
+            <imp:property name="jarentryname" value="F000T00_Felles/Java/_folderdata.LocationData"/>
+            <imp:property name="custom _special_data_class" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+        </imp:properties>
+    </imp:exportedItemInfo>
+</xml-fragment>

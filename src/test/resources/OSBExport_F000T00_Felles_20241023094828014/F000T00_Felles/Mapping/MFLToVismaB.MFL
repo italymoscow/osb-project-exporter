@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:mflEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+    <con:mfl><![CDATA[<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE MessageFormat SYSTEM 'mfl.dtd'>
+<!-- MFL generated from C:\Users\sekoso\Repo\sb\FA_AnnualBonusSettlement_VismaBusiness\XSD\XMLVBFormat.xsd -->
+<MessageFormat name='VB' version='2.01.01'>
+  <StructFormat name='Customers' delimOptional='y' optional='y'>
+    <FieldFormat name='Visible' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                 defaultValue='@VISIBLE (0)'/>
+    <FieldFormat name='Import' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                 defaultValue='@IMPORT_METHOD (3)'/>
+    <StructFormat name='Customer' delimOptional='y' optional='y' repeat='*'>
+      <FieldFormat name='EmptyString' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue=''/>
+      <FieldFormat name='Begin1' type='String' delimRef='' delim='' delimOptional='n' codepage='utf-8'
+                   defaultValue='@FIRM_BEGIN ('/>
+      <FieldFormat name='Begin' type='String' delimRef='' delim='' delimOptional='n' codepage='utf-8'/>
+      <FieldFormat name='Begin2' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue=')'/>
+      <FieldFormat name='WaBndString' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue='@WaBnd (ValDt, SrNo, Descr, SrcTp)'/>
+      <StructFormat name='WaBnd' delimOptional='y'>
+        <FieldFormat name='ValDt' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+        <FieldFormat name='SrNo' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+        <FieldFormat name='Descr' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+        <FieldFormat name='SrcTp' type='String' delimRef='' delim='\r\n' dataDelim='"' delimOptional='n'
+                     codepage='utf-8'/>
+      </StructFormat>
+      <FieldFormat name='EmptyString1' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue=''/>
+      <FieldFormat name='WaVoString' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue='@WaVo (VoNo, VoDt, ValDt, VoTp, DbAcCl, DbTxCd, DbTrnCl, Cur, ExRt, R1, R2, R3, R4, R9, Txt, DbAcNo, CurAm, Am, InvoNo, Txt2, CrAcCl, CrTxCd, CrTrnCl, CrAcNo)'/>
+      <StructFormat name='WaVos' delimOptional='y' optional='y'>
+        <StructFormat name='WaVo' delimOptional='y' optional='y' repeat='*'>
+          <FieldFormat name='VoNo' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='VoDt' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='ValDt' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='VoTp' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='DbAcCl' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='DbTxCd' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='DbTrnCl' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='Cur' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='ExRt' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='R1' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='R2' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='R3' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='R4' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='R9' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='Txt' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='DbAcNo' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='CurAm' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='Am' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n' codepage='utf-8'/>
+          <FieldFormat name='InvoNo' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='Txt2' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='CrAcCl' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='CrTxCd' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='CrTrnCl' type='String' delimRef='' delim=' ' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+          <FieldFormat name='CrAcNo' type='String' delimRef='' delim='\r\n' dataDelim='"' delimOptional='n'
+                       codepage='utf-8'/>
+        </StructFormat>
+      </StructFormat>
+      <FieldFormat name='FinalEnd1' type='String' delimRef='' delim='' delimOptional='n' codepage='utf-8'
+                   defaultValue='@FIRM_END ('/>
+      <FieldFormat name='End' type='String' delimRef='' delim='' delimOptional='n' codepage='utf-8'/>
+      <FieldFormat name='FinalEnd2' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                   defaultValue=')'/>
+    </StructFormat>
+    <FieldFormat name='CloseWindow' type='String' delimRef='' delim='\r\n' delimOptional='n' codepage='utf-8'
+                 defaultValue='@CLOSE_WINDOW ()'/>
+  </StructFormat>
+</MessageFormat>]]></con:mfl>
+</con:mflEntry>

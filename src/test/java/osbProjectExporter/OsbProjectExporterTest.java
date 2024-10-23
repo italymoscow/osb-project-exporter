@@ -64,7 +64,7 @@ public class OsbProjectExporterTest {
         String[] args = new String[]{"t3://localhost:7101",
                 "weblogic",
                 "welcome1",
-                "OSB_Bong_Rampe"};
+                "F000T00_Felles"};
         Map<String, String> parsedArgs = OsbProjectExporter.parseArgs(args);
         exportProjectJarFromServer(parsedArgs);
     }

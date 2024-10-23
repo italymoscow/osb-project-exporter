@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:businessServiceEntry xmlns:con="http://xmlns.oracle.com/servicebus/business/config" xmlns:oper="http://xmlns.oracle.com/servicebus/business/operations">
+    <con:coreEntry>
+        <con2:binding type="Mixed" xsi:type="con1:MixedBindingType" xmlns:con1="http://www.bea.com/wli/sb/services/bindings/config" xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:jms="http://www.bea.com/wli/sb/transports/jms" xmlns:con="http://www.bea.com/wli/sb/typesystem/config" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:env="http://www.bea.com/wli/config/env" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con2="http://xmlns.oracle.com/servicebus/business/config">
+            <con1:request type="Text"/>
+        </con2:binding>
+        <oper:operations enabled="true">
+            <oper:monitoring enabled="false" aggregationInterval="10"/>
+            <oper:sla-alerting enabled="true" level="normal"/>
+        </oper:operations>
+        <con:xqConfiguration>
+            <ser:snippetVersion xmlns:ser="http://www.bea.com/wli/sb/services">1.0</ser:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con1:endpointConfig xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:jms="http://www.bea.com/wli/sb/transports/jms" xmlns:con="http://www.bea.com/wli/sb/typesystem/config" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:env="http://www.bea.com/wli/config/env" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://xmlns.oracle.com/servicebus/business/config">
+        <tran:provider-id>jms</tran:provider-id>
+        <tran:inbound>false</tran:inbound>
+        <tran:URI>
+            <env:value>jms:///jms.TestCF/jms.TestQueue</env:value>
+        </tran:URI>
+        <tran:outbound-properties>
+            <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>
+            <tran:retry-count>0</tran:retry-count>
+            <tran:retry-interval>30</tran:retry-interval>
+            <tran:retry-application-errors>true</tran:retry-application-errors>
+        </tran:outbound-properties>
+        <tran:provider-specific xsi:type="jms:JmsEndPointConfiguration">
+            <jms:is-queue>true</jms:is-queue>
+            <jms:is-secure>false</jms:is-secure>
+            <jms:outbound-properties>
+                <jms:message-type>Bytes</jms:message-type>
+                <jms:expiration>0</jms:expiration>
+                <jms:enable-message-persistence>true</jms:enable-message-persistence>
+                <jms:pass-caller-subject>false</jms:pass-caller-subject>
+            </jms:outbound-properties>
+            <jms:jms-service-account ref="F000T00_Felles/TestServiceAccount"/>
+            <jms:dispatch-policy>SBDefaultResponseWorkManager</jms:dispatch-policy>
+            <jms:request-encoding>UTF-8</jms:request-encoding>
+            <jms:jndi-timeout>30</jms:jndi-timeout>
+        </tran:provider-specific>
+    </con1:endpointConfig>
+</con:businessServiceEntry>
