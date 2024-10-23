@@ -40,6 +40,7 @@ public class FileUtil {
         extensions.put("ServiceAccount", "sa");
         extensions.put("Archive", "jar");
         extensions.put("JCA", "jca");
+        extensions.put("JavaScript", "js");
         validExtensions = Collections.unmodifiableMap(extensions);
     }
 
@@ -269,17 +270,27 @@ public class FileUtil {
             return;
         }
 
-        // Check if the contents of the first child is CDATA
         Element root = doc.getDocumentElement();
         Node child = root.getFirstChild().getNextSibling().getFirstChild();
-        if (child != null && child.getNodeType() == Node.CDATA_SECTION_NODE) {
-            // Get the content of the CDATA
-            String cdata = child.getNodeValue();
-            // Write the content of the CDATA to the file
+        if (child == null) {
+            return;
+        }
+
+        if (child.getNodeType() == Node.CDATA_SECTION_NODE) {
+            String nodeValue = child.getNodeValue();
+            // Write the nodeValue to the file
             try (FileOutputStream fos = new FileOutputStream(file)) {
-                fos.write(cdata.getBytes());
+                fos.write(nodeValue.getBytes());
             } catch (IOException e) {
                 System.out.println("Failed to write the content of the CDATA to the file: " + file.getPath());
+            }
+        } else if (root.getLocalName().equals("javaScriptEntry")) {
+            // Write the content of the java-script-content to the file
+            String nodeValue = child.getTextContent();
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                fos.write(nodeValue.getBytes());
+            } catch (IOException e) {
+                System.out.println("Failed to write the content of the java-script-content to the file: " + file.getPath());
             }
         }
     }
